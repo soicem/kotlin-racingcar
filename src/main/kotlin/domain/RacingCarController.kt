@@ -6,7 +6,7 @@ import view.ResultView
 class RacingCarController {
     fun start() {
         val inputCommand = InputView().input()
-        val cars = CarGame().startGame(inputCommand)
-        //ResultView().printResult(inputCommand, cars)
+        val result = CarGame().startGame(inputCommand)
+        ResultView().printResult(inputCommand, result)
     }
 }
