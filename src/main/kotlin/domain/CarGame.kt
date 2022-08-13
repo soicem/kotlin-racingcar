@@ -3,9 +3,11 @@ package domain
 import view.InputCommand
 
 class CarGame {
-    val cars : MutableList<Car> = mutableListOf()
+    private val cars: MutableList<Car> = mutableListOf()
+    private var round: Int = 0
     fun startGame(cmd : InputCommand): MutableList<Car> {
         ready(cmd)
+        this.round = cmd.trial
         return race(cmd.trial)
     }
 
@@ -20,5 +22,16 @@ class CarGame {
             cars.forEach { if (it.canMove(CustomGenerator(0, 9))) it.move(i) }
         }
         return cars
+    }
+
+    fun getWinners(): List<String> {
+        return cars
+            .filter {
+                it.distance(round) == cars
+                    .maxOf { it -> it.distance(round) }
+            }
+            .map {
+                it.getName()
+            }
     }
 }

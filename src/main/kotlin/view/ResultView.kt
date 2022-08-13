@@ -22,4 +22,13 @@ class ResultView {
         }
         println()
     }
+
+    fun printWinners(winnerNames: List<String>) {
+        for(winnerName in winnerNames) {
+            print(winnerName)
+            if(winnerName != winnerNames[winnerNames.size - 1])
+                print(",")
+        }
+        println("가 최종 우승했습니다.")
+    }
 }
